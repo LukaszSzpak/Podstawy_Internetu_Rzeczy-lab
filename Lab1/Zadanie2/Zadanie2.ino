@@ -2,7 +2,7 @@
 // Środa 18:55
 // Zadanie: 1.2 - Czas wciśnięcia przycisku
 
-#define PRZYCISK 10
+#define PRZYCISK 2
 
 void setup() {
   Serial.begin(9600);
@@ -12,10 +12,11 @@ void setup() {
 
 void loop() {
   if (digitalRead(PRZYCISK) == LOW) {
-    delay(20);
+    unsigned long czasNacisniecia = millis();
+    delay(2);
 
     if (digitalRead(PRZYCISK) == LOW) {
-      unsigned long czasNacisniecia = millis();
+     
 
       while (digitalRead(PRZYCISK) == LOW) {
         //czekamy az Szanowny uzytkownik pusci przycisk
@@ -35,7 +36,7 @@ void loop() {
       Serial.print(".");
       Serial.println(czasTrzymania);
     }
-    
+   
   }
 
 }
