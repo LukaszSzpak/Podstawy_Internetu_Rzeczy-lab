@@ -1,7 +1,7 @@
 import json
 
 
-def save_data(data, filename):
+def save_data(filename, data):
     """
     :param filename: name of file to save data
     :param data: data to save to file
