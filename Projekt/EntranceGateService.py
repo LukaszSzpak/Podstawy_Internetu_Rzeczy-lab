@@ -32,5 +32,6 @@ class EntranceGateService(object):
     def handle_data_from_gate(self):
         while True:
             if msvcrt.kbhit():
-                key_stroke = msvcrt.getch()
-                self.check_id_and_add(str(key_stroke)[2])
+                key_stroke = str(msvcrt.getch())[2]
+                if '1' <= key_stroke <= '9':
+                    self.check_id_and_add(key_stroke)
