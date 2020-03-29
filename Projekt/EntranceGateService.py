@@ -1,6 +1,6 @@
 from Employee import Employee
 import datetime
-from SaveAndLoadData import save_data
+from SaveAndLoadData import prepare_and_save
 import msvcrt
 
 
@@ -15,10 +15,6 @@ class EntranceGateService(object):
     def add_new_employee(self, id):
         self.emp_list.append(Employee(id, ' ', ' ', [format(datetime.datetime.now())]))
 
-    def prepare_and_save(self):
-        employ = [i.__dict__ for i in self.emp_list]
-        save_data(self.file_name, employ)
-
     def check_id_and_add(self, id):
         for i in self.emp_list:
             if i.id == id:
@@ -27,7 +23,7 @@ class EntranceGateService(object):
         else:
             self.add_new_employee(id)
 
-        self.prepare_and_save()
+        prepare_and_save(self.emp_list, self.file_name)
 
     def handle_data_from_gate(self):
         while True:
