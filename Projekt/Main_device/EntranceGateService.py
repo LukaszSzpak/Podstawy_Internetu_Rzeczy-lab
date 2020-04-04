@@ -33,7 +33,8 @@ class EntranceGateService(object):
         client.subscribe(MQTT_PATH)
 
     def on_message(self, client, userdata, msg):
-        self.check_id_and_add(str(msg.payload))
+        my_msg = str(msg.payload)[2:]
+        self.check_id_and_add(my_msg)
 
     def connect_gate(self):
         client = mqtt.Client()
@@ -41,7 +42,6 @@ class EntranceGateService(object):
         client.on_message = self.on_message
         client.connect(MQTT_ADDRESS, 1883, 60)
         client.loop_forever()
-
 
     def handle_data_from_gates(self):
         self.connect_gate()
