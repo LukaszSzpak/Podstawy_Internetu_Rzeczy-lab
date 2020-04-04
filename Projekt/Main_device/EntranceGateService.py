@@ -1,0 +1,47 @@
+from Employee import Employee
+import datetime
+from SaveAndLoadData import prepare_and_save
+import paho.mqtt.client as mqtt
+
+MQTT_PATH = "my_channel"
+MQTT_ADDRESS = 'localhost'
+
+
+class EntranceGateService(object):
+    def __init__(self, emp_list, file_name):
+        self.emp_list = emp_list
+        self.file_name = file_name
+
+    def add_employee_new_time(self, employee):
+        employee.add_new_time(format(datetime.datetime.now()))
+
+    def add_new_employee(self, id):
+        self.emp_list.append(Employee(id, ' ', ' ', [format(datetime.datetime.now())]))
+
+    def check_id_and_add(self, id):
+        for i in self.emp_list:
+            if i.id == id:
+                self.add_employee_new_time(i)
+                break
+        else:
+            self.add_new_employee(id)
+
+        prepare_and_save(self.emp_list, self.file_name)
+
+    def on_connect(self, client, userdata, flags, rc):
+        print("Connected with result code " + str(rc))
+        client.subscribe(MQTT_PATH)
+
+    def on_message(self, client, userdata, msg):
+        self.check_id_and_add(str(msg.payload))
+
+    def connect_gate(self):
+        client = mqtt.Client()
+        client.on_connect = self.on_connect
+        client.on_message = self.on_message
+        client.connect(MQTT_ADDRESS, 1883, 60)
+        client.loop_forever()
+
+
+    def handle_data_from_gates(self):
+        self.connect_gate()
