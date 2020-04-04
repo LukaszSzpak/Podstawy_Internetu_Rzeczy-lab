@@ -1,8 +1,8 @@
 # Podstawy Internetu Rzeczy
 
-<h3>Kurs na czwartym semestrze studiów PWR - Informatyka
+<h3>Kurs na czwartym semestrze studiów PWR - Informatyka</h3>
 
-Składał się z nastepujących części:
+<h4>Składał się z nastepujących części:</h4>
 - Arduino (Lab1 - Lab6):
     Proste programy napisane w jęzku C++ obejmowały:
     - obsługa diód LED, przycisków, LCD
