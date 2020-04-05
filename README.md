@@ -30,6 +30,7 @@
         <ul>
             <li>Podział programu na część serwerową oraz klienckie.</li>
             <li>Transmisja danych na podstawie protkołu MQTT.</li>
+            <li>Dodanie plików konfiguracyjnych 'config.py'.</li>
         </ul></li>
     <li>Etap 3:
         <ul>
