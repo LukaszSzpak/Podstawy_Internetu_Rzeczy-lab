@@ -2,9 +2,7 @@ from Employee import Employee
 import datetime
 from SaveAndLoadData import prepare_and_save
 import paho.mqtt.client as mqtt
-
-MQTT_PATH = "my_channel"
-MQTT_ADDRESS = 'localhost'
+from config import MQTT_PATH, MQTT_ADDRESS
 
 
 class EntranceGateService(object):
