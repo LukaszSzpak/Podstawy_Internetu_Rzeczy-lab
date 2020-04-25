@@ -34,6 +34,11 @@
         </ul></li>
     <li>Etap 3:
         <ul>
+            <li>Dodanie TLS do protokołu MQTT</li>
+        </ul>
+        </li>
+    <li>Etap 4:
+        <ul>
             <li></li>
         </ul>
         </li>
