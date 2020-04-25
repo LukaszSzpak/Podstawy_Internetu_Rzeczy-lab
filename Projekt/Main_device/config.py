@@ -1,3 +1,5 @@
 # server configuration file
-MQTT_PATH = 'my_channel'  # name of your channel -> must be the same on all devices
-MQTT_ADDRESS = 'localhost'  # host address, 'localhost' if on the same device
+MQTT_PATH = 'my_channel'
+MQTT_ADDRESS = 'DESKTOP-9VJ65N0'
+MQQT_PORT = 8883
+MQQT_TLS_CERT = 'ca.crt'
