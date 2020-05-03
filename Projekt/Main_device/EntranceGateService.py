@@ -2,7 +2,7 @@ from Employee import Employee
 import datetime
 from SaveAndLoadData import prepare_and_save
 import paho.mqtt.client as mqtt
-from config import MQTT_PATH, MQTT_ADDRESS, MQQT_PORT, MQQT_TLS_CERT
+from config import MQTT_PATH, MQTT_ADDRESS, MQQT_PORT, MQQT_TLS_CERT, LOGIN, PASSW
 
 
 class EntranceGateService(object):
@@ -37,6 +37,7 @@ class EntranceGateService(object):
     def connect_gate(self):
         client = mqtt.Client()
         client.tls_set(MQQT_TLS_CERT)
+        client.username_pw_set(username=LOGIN, password=PASSW)
         client.connect(MQTT_ADDRESS, MQQT_PORT)
         client.on_connect = self.on_connect
         client.on_message = self.on_message
