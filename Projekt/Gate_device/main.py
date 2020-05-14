@@ -1,6 +1,6 @@
 import msvcrt
-from paho.mqtt import publish
 import paho.mqtt.client as mqtt
+import time
 from config import MQTT_PATH, MQTT_ADDRESS, MQQT_PORT, MQQT_TLS_CERT, LOGIN, PASSW
 
 client = mqtt.Client()
@@ -16,9 +16,14 @@ def start_client():
 
 
 def conn_to_server():
-    client.tls_set(MQQT_TLS_CERT)
-    client.username_pw_set(username=LOGIN, password=PASSW)
-    client.connect(MQTT_ADDRESS, MQQT_PORT)
+    try:
+        client.tls_set(MQQT_TLS_CERT)
+        client.username_pw_set(username=LOGIN, password=PASSW)
+        client.connect(MQTT_ADDRESS, MQQT_PORT)
+    except:
+        print("cannot connect !")
+        time.sleep(2)
+        conn_to_server()
 
 
 if __name__ == "__main__":

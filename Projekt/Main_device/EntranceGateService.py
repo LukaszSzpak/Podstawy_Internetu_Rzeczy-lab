@@ -2,6 +2,7 @@ from Employee import Employee
 import datetime
 from SaveAndLoadData import prepare_and_save
 import paho.mqtt.client as mqtt
+import sys
 from config import MQTT_PATH, MQTT_ADDRESS, MQQT_PORT, MQQT_TLS_CERT, LOGIN, PASSW
 
 
@@ -35,13 +36,17 @@ class EntranceGateService(object):
         self.check_id_and_add(my_msg)
 
     def connect_gate(self):
-        client = mqtt.Client()
-        client.tls_set(MQQT_TLS_CERT)
-        client.username_pw_set(username=LOGIN, password=PASSW)
-        client.connect(MQTT_ADDRESS, MQQT_PORT)
-        client.on_connect = self.on_connect
-        client.on_message = self.on_message
-        client.loop_forever()
+        try:
+            client = mqtt.Client()
+            client.tls_set(MQQT_TLS_CERT)
+            client.username_pw_set(username=LOGIN, password=PASSW)
+            client.connect(MQTT_ADDRESS, MQQT_PORT)
+            client.on_connect = self.on_connect
+            client.on_message = self.on_message
+            client.loop_forever()
+        except:
+            print("Cannot connect !")
+            self.connect_gate()
 
     def handle_data_from_gates(self):
         self.connect_gate()
