@@ -40,8 +40,12 @@ class CommandLineConfig(object):
         print("Write new employee data: (id, name, surname) - if id exist you'll overide its data")
         new_data = input().split(', ')
 
-        self.check_id_and_add_or_edit(new_data[0], new_data[1], new_data[2])
-        print('You add: ' + new_data[0] + ' ' + new_data[1] + ' ' + new_data[2])
+        try:
+            self.check_id_and_add_or_edit(new_data[0], new_data[1], new_data[2])
+            print('You add: ' + new_data[0] + ' ' + new_data[1] + ' ' + new_data[2])
+        except:
+            print("Wrong data !")
+            self.add_new_employee()
 
         prepare_and_save(self.emp_list, self.file_name)
         self.ask_what_to_do()
