@@ -80,6 +80,7 @@ class CommandLineConfig(object):
         else:
             print("Not found !")
 
+        prepare_and_save(self.emp_list, self.file_name)
         self.ask_what_to_do()
 
     def make_report(self):
