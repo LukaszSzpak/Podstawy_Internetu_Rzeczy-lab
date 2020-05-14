@@ -20,6 +20,7 @@ def conn_to_server():
         client.tls_set(MQQT_TLS_CERT)
         client.username_pw_set(username=LOGIN, password=PASSW)
         client.connect(MQTT_ADDRESS, MQQT_PORT)
+        print("Connected !")
     except:
         print("cannot connect !")
         time.sleep(2)
